@@ -32,16 +32,6 @@ class CallsController < ApplicationController
     end
   end
 
-  def make_call
-    @call = @client.account.calls.create(
-      from: '+14155992671',
-      to: '+13108946668',
-      url: 'http://4pqn.localtunnel.com/call'
-    )
-
-    redirect_to root_path
-  end
-
   # GET /calls/1/edit
   def edit
     @call = Call.find(params[:id])
@@ -61,6 +51,17 @@ class CallsController < ApplicationController
         format.json { render json: @call.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # Twilio Call for Specific Conference
+  def make_call
+    @call = @client.account.calls.create(
+      from: '+14155992671',
+      to: '+13108946668',
+      url: 'http://4pqn.localtunnel.com/call'
+    )
+
+    redirect_to root_path
   end
 
   # PUT /calls/1

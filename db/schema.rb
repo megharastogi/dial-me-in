@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421011353) do
+ActiveRecord::Schema.define(:version => 20120423070413) do
 
   create_table "calls", :force => true do |t|
     t.datetime "time"

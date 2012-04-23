@@ -1,7 +1,7 @@
 AutoConfCall::Application.routes.draw do
-  resources :participants
-
   resources :calls
+
+  resources :participants
 
   root to: 'calls#index'
   match 'call_participants', to: 'calls#make_call'
