@@ -3,6 +3,10 @@ AutoConfCall::Application.routes.draw do
 
   resources :calls
 
+  root to: 'calls#index'
+  match 'call_participants', to: 'calls#make_call'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -52,7 +56,7 @@ AutoConfCall::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+
 
   # See how all your routes lay out with "rake routes"
 
