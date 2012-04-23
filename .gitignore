@@ -20,3 +20,6 @@ doc/
 *~
 .project
 .DS_Store
+
+# Ignore private files
+*private*
