@@ -5,6 +5,7 @@ AutoConfCall::Application.routes.draw do
 
   root to: 'calls#index'
   match 'call_participants', to: 'calls#make_call'
+  match 'incoming_call', to: 'calls#incoming_call'
 
 
   # The priority is based upon order of creation:

@@ -1,1 +1,3 @@
 Twilio-based Conference Call app that takes in phone numbers and a date/time and automatically calls all participants and connects them to the conference
+
+In Mother Russian, Conference calls you!
