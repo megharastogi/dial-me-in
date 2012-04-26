@@ -4,8 +4,9 @@ AutoConfCall::Application.routes.draw do
   resources :participants
 
   root to: 'calls#index'
-  match 'call_participants', to: 'calls#make_call'
+  match 'handle_call', to: 'calls#handle_call'
   match 'incoming_call', to: 'calls#incoming_call'
+  match 'calls/:id/initiate_conference', to: 'calls#initiate_conference', as: "initiate_conference"
 
 
   # The priority is based upon order of creation:

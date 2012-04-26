@@ -3,6 +3,9 @@
 %p
   %b Time:
   = @call.time
+%p
+  %b Call:
+  = link_to 'Initiate Conference Call', initiate_conference_path
 
 = link_to 'Edit', edit_call_path(@call)
 \|

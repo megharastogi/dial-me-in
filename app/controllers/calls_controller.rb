@@ -54,14 +54,21 @@ class CallsController < ApplicationController
   end
 
   # Twilio Call for Specific Conference
-  def make_call
-    @call = @client.account.calls.create(
+  def initiate_conference
+    @call = Call.find(params[:id])
+    @call.participants do |participant|
+      @client.account.calls.create(
       from: '+14155992671',
-      to: '+13108946668',
-      url: 'http://4pqn.localtunnel.com/call'
+      to: "#{participant.phone}",
+      url: 'http://4pqn.localtunnel.com/handle_call'
     )
+    end
 
-    redirect_to root_path
+    redirect_to @call
+  end
+
+  def handle_call
+    render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
   end
 
   # Handle incoming Twilio Call for Specific Conference
