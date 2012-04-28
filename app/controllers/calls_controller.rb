@@ -42,6 +42,8 @@ class CallsController < ApplicationController
   def create
     @call = Call.new(params[:call])
 
+    # TODO Add IronWorker script here
+
     respond_to do |format|
       if @call.save
         format.html { redirect_to @call, notice: 'Call was successfully created.' }
@@ -57,7 +59,7 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      @client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://3iv3.localtunnel.com/calls/#{@call.id}/handle_call"})
+      @twilio_client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://3iv3.localtunnel.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call

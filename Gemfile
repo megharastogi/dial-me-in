@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'twilio-ruby', '3.6.0'
+gem 'iron_worker_ng', '0.4.0'
 gem 'haml-rails', '0.3.4'
 gem 'jquery-rails', '2.0.2'
 
