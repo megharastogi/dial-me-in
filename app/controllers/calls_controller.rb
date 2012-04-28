@@ -56,24 +56,24 @@ class CallsController < ApplicationController
   # Twilio Call for Specific Conference
   def initiate_conference
     @call = Call.find(params[:id])
-    @call.participants do |participant|
-      @client.account.calls.create(
-      from: '+14155992671',
-      to: "#{participant.phone}",
-      url: 'http://4pqn.localtunnel.com/handle_call'
-    )
+    @call.participants.each do |participant|
+      @client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://53kq.localtunnel.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
   end
 
+  # Place someone into conference
   def handle_call
+    @call = Call.find(params[:id])
     render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
   end
 
   # Handle incoming Twilio Call for Specific Conference
   def incoming_call
-    
+    # Get Conference
+    # Match it to a Call.id
+    # redirect to calls/id/handle_call
   end
 
   # PUT /calls/1

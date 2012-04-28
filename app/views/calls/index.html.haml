@@ -1,18 +1,18 @@
 %h1 Listing calls
 
 %table
-  %tr
-    %th Time
-    %th
-    %th
-    %th
+	%tr
+		%th Time
+		%th
+		%th
+		%th
 
-  - @calls.each do |call|
-    %tr
-      %td= call.time
-      %td= link_to 'Show', call
-      %td= link_to 'Edit', edit_call_path(call)
-      %td= link_to 'Destroy', call, :confirm => 'Are you sure?', :method => :delete
+	- @calls.each do |call|
+		%tr
+			%td= call.time
+			%td= link_to 'Show', call
+			%td= link_to 'Edit', edit_call_path(call)
+			%td= link_to 'Destroy', call, :confirm => 'Are you sure?', :method => :delete
 %br
 
 = link_to 'New Call', new_call_path
