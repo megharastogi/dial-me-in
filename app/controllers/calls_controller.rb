@@ -57,7 +57,7 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      @client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://53kq.localtunnel.com/calls/#{@call.id}/handle_call"})
+      @client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://3iv3.localtunnel.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
