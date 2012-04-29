@@ -6,11 +6,11 @@
 %p
 	%b Call:
 	= link_to 'Initiate Conference Call', initiate_conference_path
+%hr
 %p
 	%b Participants:
-	- @call.participants.each do |participant|
-		=participant.name
-		=participant.phone
+	%hr
+	= render @participants || 'No participants'
 
 = link_to 'Edit', edit_call_path(@call)
 \|

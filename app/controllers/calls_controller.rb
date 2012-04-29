@@ -14,6 +14,7 @@ class CallsController < ApplicationController
   # GET /calls/1.json
   def show
     @call = Call.find(params[:id])
+    @participants = @call.participants
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,23 +62,26 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      @twilio_client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4u8d.localtunnel.com/calls/#{@call.id}/handle_call"})
+      @twilio_client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4bgc.localtunnel.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
   end
 
-  # Place someone into conference
+  # Master Call Handler
   def handle_call
-    @call = Call.find(params[:id])
-    render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
-  end
-
-  # Handle incoming Twilio Call for Specific Conference
-  def incoming_call
-    # Get Conference
-    # Match it to a Call.id
-    # redirect to calls/id/handle_call
+    # If sent from auto-conference
+    if params[:id]
+      @call = Call.find(params[:id])
+      render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
+    # If sent from self-dial
+    elsif params[:Digits]
+        @call = Call.find(params[:Digits])
+        render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
+    # When self-dialing in
+    else
+      render text: "<Response><Gather><Say voice='woman'>Please enter your conference number, followed by the pound sign</Say></Gather></Response>"
+    end
   end
 
   # PUT /calls/1
