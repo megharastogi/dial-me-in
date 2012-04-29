@@ -14,6 +14,7 @@ class CallsController < ApplicationController
   # GET /calls/1.json
   def show
     @call = Call.find(params[:id])
+    @participants = @call.participants
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +62,7 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      @twilio_client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4u8d.localtunnel.com/calls/#{@call.id}/handle_call"})
+      @twilio_client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4bgc.localtunnel.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
