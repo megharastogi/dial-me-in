@@ -68,17 +68,20 @@ class CallsController < ApplicationController
     redirect_to @call
   end
 
-  # Place someone into conference
+  # Master Call Handler
   def handle_call
-    @call = Call.find(params[:id])
-    render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
-  end
-
-  # Handle incoming Twilio Call for Specific Conference
-  def incoming_call
-    # Get Conference
-    # Match it to a Call.id
-    # redirect to calls/id/handle_call
+    # If sent from auto-conference
+    if params[:id]
+      @call = Call.find(params[:id])
+      render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
+    # If sent from self-dial
+    elsif params[:Digits]
+        @call = Call.find(params[:Digits])
+        render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
+    # When self-dialing in
+    else
+      render text: "<Response><Gather><Say voice='woman'>Please enter your conference number, followed by the pound sign</Say></Gather></Response>"
+    end
   end
 
   # PUT /calls/1

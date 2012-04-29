@@ -5,7 +5,7 @@ AutoConfCall::Application.routes.draw do
 
   root to: 'calls#index'
   match 'calls/:id/handle_call', to: 'calls#handle_call'
-  match 'incoming_call', to: 'calls#incoming_call'
+  match 'incoming_call', to: 'calls#handle_call'
   match 'calls/:id/initiate_conference', to: 'calls#initiate_conference', as: 'initiate_conference'
 
 
