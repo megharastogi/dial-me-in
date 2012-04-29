@@ -40,12 +40,16 @@ class CallsController < ApplicationController
   # POST /calls
   # POST /calls.json
   def create
-    @call = Call.new(params[:call])
+    @call = Call.new(params[:call])    
 
     respond_to do |format|
       if @call.save
         format.html { redirect_to @call, notice: 'Call was successfully created.' }
         format.json { render json: @call, status: :created, location: @call }
+
+        # Schedule call 
+        @iron_client.schedules.create('CallTrigger', {id: @call.id}, {start_at: @call.time})
+
       else
         format.html { render action: "new" }
         format.json { render json: @call.errors, status: :unprocessable_entity }
@@ -57,7 +61,7 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      @client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://3iv3.localtunnel.com/calls/#{@call.id}/handle_call"})
+      @twilio_client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4u8d.localtunnel.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
