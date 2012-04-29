@@ -1,3 +1,6 @@
 require 'net/http'
 
-url = "http://4u8d.localtunnel.com/calls/#{params[:id]}/initiate_conference"
+domain = "4849.localtunnel.com"
+path = "/calls/#{params[:id]}/initiate_conference"
+
+Net::HTTP.get(domain, path)
