@@ -54,7 +54,7 @@ GEM
       json
       rest
       rest-client
-    iron_worker_ng (0.4.0)
+    iron_worker_ng (0.4.1)
       bundler (> 1.0.0)
       iron_core
       json

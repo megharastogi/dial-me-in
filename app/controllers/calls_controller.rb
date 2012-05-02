@@ -49,7 +49,7 @@ class CallsController < ApplicationController
         format.json { render json: @call, status: :created, location: @call }
 
         # Schedule call 
-        @iron_client.schedules.create('CallTrigger', {id: @call.id}, {start_at: @call.time})
+        IRON_CLIENT.schedules.create('CallTrigger', {id: @call.id}, {start_at: @call.time})
 
       else
         format.html { render action: "new" }
@@ -62,7 +62,7 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      @twilio_client.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4bgc.localtunnel.com/calls/#{@call.id}/handle_call"})
+      TWILIO_CLIENT.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4n2t.localtunnel.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
