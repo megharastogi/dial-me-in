@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'twilio-ruby'
 gem 'iron_worker_ng'
+gem 'typhoeus'
 gem 'haml-rails'
 gem 'jquery-rails'
 
