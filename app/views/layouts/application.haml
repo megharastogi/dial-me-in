@@ -1,0 +1,13 @@
+!!!
+%html
+	%head
+		%title Dial Me In
+	= stylesheet_link_tag    "application", media:"all"
+	= javascript_include_tag "application"
+	= csrf_meta_tags
+	= render 'layouts/shim'
+%body
+	= render 'layouts/header'
+	.container-fluid
+		= yield
+	= render 'layouts/footer'
