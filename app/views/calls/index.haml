@@ -1,18 +1,20 @@
-%h1 Listing calls
+.center.hero-unit
 
-%table
-	%tr
-		%th Time
-		%th
-		%th
-		%th
+	%h1 Listing calls
 
-	- @calls.each do |call|
+	%table
 		%tr
-			%td= call.time
-			%td= link_to 'Show', call
-			%td= link_to 'Edit', edit_call_path(call)
-			%td= link_to 'Destroy', call, :confirm => 'Are you sure?', :method => :delete
-%br
+			%th Time
+			%th
+			%th
+			%th
 
-= link_to 'New Call', new_call_path
+		- @calls.each do |call|
+			%tr
+				%td= call.time
+				%td= link_to 'Show', call, class: "btn btn-small btn-primary"
+				%td= link_to 'Edit', edit_call_path(call), class: "btn btn-small"
+				%td= link_to 'Destroy', call, :confirm => 'Are you sure?', :method => :delete, class: "btn btn-small btn-danger"
+	%br
+
+	= link_to 'New Call', new_call_path
