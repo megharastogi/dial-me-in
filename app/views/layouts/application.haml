@@ -9,5 +9,8 @@
 %body
 	= render 'layouts/header'
 	.container-fluid
-		= yield
+		-flash.each do |name, msg|
+			.alert{class: "alert-#{name == :notice ? "success" : "error"}"}
+				=msg
+		.span12= yield
 	= render 'layouts/footer'

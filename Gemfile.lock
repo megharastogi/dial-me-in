@@ -29,7 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
-    bootstrap-sass (2.0.2)
+    bootstrap-sass (2.0.3)
     builder (3.0.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -37,11 +37,13 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.3.1)
+    coffee-script-source (1.3.3)
+    date_validator (0.6.3)
+      activemodel (~> 3.0)
     erubis (2.7.0)
-    execjs (1.3.1)
+    execjs (1.3.2)
       multi_json (~> 1.0)
-    haml (3.1.4)
+    haml (3.1.6)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
@@ -49,9 +51,8 @@ GEM
       railties (~> 3.0)
     hike (1.2.1)
     i18n (0.6.0)
-    iron_core (0.1.0)
+    iron_core (0.1.1)
       bundler (> 1.0.0)
-      json
       rest
       rest-client
     iron_worker_ng (0.4.1)
@@ -63,7 +64,7 @@ GEM
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
-    json (1.7.0)
+    json (1.7.3)
     jwt (0.1.4)
       json (>= 1.2.4)
     mail (2.4.4)
@@ -71,7 +72,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.18)
-    multi_json (1.3.4)
+    multi_json (1.3.5)
     pg (0.13.2)
     pg (0.13.2-x86-mingw32)
     polyglot (0.3.3)
@@ -105,7 +106,7 @@ GEM
       rest-client
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    sass (3.1.17)
+    sass (3.1.18)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -140,6 +141,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   coffee-rails
+  date_validator
   haml-rails
   iron_worker_ng
   jquery-rails

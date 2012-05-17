@@ -1,11 +1,4 @@
 = form_for @call do |f|
-  -if @call.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@call.errors.count, "error")} prohibited this call from being saved:"
-      %ul
-        - @call.errors.full_messages.each do |msg|
-          %li= msg
-
   .field
     = f.label :time
     = f.datetime_select :time
