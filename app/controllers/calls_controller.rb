@@ -78,7 +78,7 @@ class CallsController < ApplicationController
     # If sent from self-dial
     elsif params[:Digits]
         @call = Call.find(params[:Digits])
-        render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
+        render text: "<Response><Dial><Conference>DialMeIn Room #{@call.id}</Conference></Dial></Response>"
     # When self-dialing in
     else
       render text: "<Response><Gather><Say voice='woman'>Please enter your conference number, followed by the pound sign</Say></Gather></Response>"
