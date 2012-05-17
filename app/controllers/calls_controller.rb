@@ -36,6 +36,7 @@ class CallsController < ApplicationController
   # GET /calls/1/edit
   def edit
     @call = Call.find(params[:id])
+    @participant = @call.participants.build
   end
 
   # POST /calls
@@ -62,7 +63,7 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      TWILIO_CLIENT.account.calls.create({from: '+14155992671', to: "+1#{participant.phone}", url: "http://4n2t.localtunnel.com/calls/#{@call.id}/handle_call"})
+      TWILIO_CLIENT.account.calls.create({from: '+12065382886', to: "+1#{participant.phone}", url: "http://dial-me-in.herokuapp.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
@@ -73,7 +74,7 @@ class CallsController < ApplicationController
     # If sent from auto-conference
     if params[:id]
       @call = Call.find(params[:id])
-      render text: "<Response><Dial><Conference>AutoConfCall Room #{@call.id}</Conference></Dial></Response>"
+      render text: "<Response><Dial><Conference>DialMeIn Room #{@call.id}</Conference></Dial></Response>"
     # If sent from self-dial
     elsif params[:Digits]
         @call = Call.find(params[:Digits])

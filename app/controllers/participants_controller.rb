@@ -40,15 +40,15 @@ class ParticipantsController < ApplicationController
   # POST /participants
   # POST /participants.json
   def create
-    @participant = Participant.new(params[:participant])
+    @call = Call.find(params[:id])
+    @participant = @call.participants.build(params[:participant])
 
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to @participant, notice: 'Participant was successfully created.' }
-        format.json { render json: @participant, status: :created, location: @participant }
+        format.html { redirect_to @call, notice: 'Participant was successfully added to the conference call.' }
+        format.json { render json: @call, status: :created, location: @participant }
       else
-        format.html { render action: "new" }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
+        redirect_to @call
       end
     end
   end
