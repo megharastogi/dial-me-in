@@ -50,7 +50,7 @@ class CallsController < ApplicationController
         format.json { render json: @call, status: :created, location: @call }
 
         # Schedule call 
-        IRON_CLIENT.schedules.create('CallTrigger', {id: @call.id}, {start_at: @call.time})
+        #IRON_CLIENT.schedules.create('CallTrigger', {id: @call.id}, {start_at: @call.time})
 
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class CallsController < ApplicationController
   def initiate_conference
     @call = Call.find(params[:id])
     @call.participants.each do |participant|
-      TWILIO_CLIENT.account.calls.create({from: '+12065382886', to: "+1#{participant.phone}", url: "http://dial-me-in.herokuapp.com/calls/#{@call.id}/handle_call"})
+      #TWILIO_CLIENT.account.calls.create({from: '+12065382886', to: "+1#{participant.phone}", url: "http://dial-me-in.herokuapp.com/calls/#{@call.id}/handle_call"})
     end
 
     redirect_to @call
@@ -89,9 +89,8 @@ class CallsController < ApplicationController
   # PUT /calls/1.json
   def update
     @call = Call.find(params[:id])
-
     respond_to do |format|
-      if @call.update_attributes(params[:call])
+      if @call.update_attributes(time: DateTime.strptime(params[:call][:time], '%m/%d/%Y %H:%M'))
         format.html { redirect_to @call, notice: 'Call was successfully updated.' }
         format.json { head :no_content }
       else

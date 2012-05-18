@@ -12,6 +12,6 @@
 #
 
 class Participant < ActiveRecord::Base
-  attr_accessible :name, :phone, :email
+  attr_accessible :name, :phone, :email, :call_id
   belongs_to :call
 end

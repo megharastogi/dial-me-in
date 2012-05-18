@@ -1,6 +1,3 @@
-= form_for @call do |f|
-  .field
-    = f.label :time
-    = f.datetime_select :time
-  .actions
-    = f.submit 'Save'
+= simple_form_for @call do |f|
+	= f.input :time, as: :string, input_html: { id: 'datepicker' }
+	= f.button :submit

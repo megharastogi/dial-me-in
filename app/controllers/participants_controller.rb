@@ -23,15 +23,6 @@ class ParticipantsController < ApplicationController
 
   # GET /participants/new
   # GET /participants/new.json
-  def new
-    @participant = Participant.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @participant }
-    end
-  end
-
   # GET /participants/1/edit
   def edit
     @participant = Participant.find(params[:id])
@@ -40,8 +31,8 @@ class ParticipantsController < ApplicationController
   # POST /participants
   # POST /participants.json
   def create
-    @call = Call.find(params[:id])
-    @participant = @call.participants.build(params[:participant])
+    @call = Call.find(params[:participant][:call_id])
+    @participant = Participant.new(params[:participant])
 
     respond_to do |format|
       if @participant.save
@@ -60,7 +51,7 @@ class ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @participant.update_attributes(params[:participant])
-        format.html { redirect_to @participant, notice: 'Participant was successfully updated.' }
+        format.html { redirect_to @participant.call, notice: 'Participant was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
